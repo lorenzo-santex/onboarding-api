@@ -12,8 +12,9 @@ const config = {
     database: process.env.DB_DATABASE,
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
-    dialect: 'mysql',
+    dialect: 'sqlite',
     operatorsAliases: '0',
+    storage: 'database.sqlite'
   },
   test: {
     username: process.env.DB_USERNAME,
@@ -21,8 +22,9 @@ const config = {
     database: process.env.DB_DATABASE,
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
-    dialect: 'mysql',
+    dialect: 'sqlite',
     operatorsAliases: '0',
+    storage: 'database.sqlite'
   },
   production: {
     username: process.env.DB_USERNAME,
@@ -30,8 +32,9 @@ const config = {
     database: process.env.DB_DATABASE,
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
-    dialect: 'mysql',
+    dialect: 'sqlite',
     operatorsAliases: '0',
+    storage: 'database.sqlite'
   },
 };
 

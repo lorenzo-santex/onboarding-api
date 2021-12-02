@@ -4,8 +4,7 @@ const logger = require('../../utils/winston.logger');
 const sequelizeOptions = {
   logging: (msg) => logger.api.debug(`Database: ${process.env.DB_NAME} - ${msg}`),
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  dialect: 'mysql',
+  dialect: 'sqlite',
   operatorsAliases: '0',
   timezone: '-03:00',
   dialectOptions: {
@@ -19,6 +18,7 @@ const sequelizeOptions = {
     acquire: 30000,
     idle: 10000,
   },
+  storage: '.data/database.sqlite'
 };
 
 const sequelize = new Sequelize(
