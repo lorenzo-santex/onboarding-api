@@ -25,6 +25,46 @@ app.get('/cuentas', async (req, res) => {
     }
 });
 
+app.get('/cuentas/:id', async (req, res) => {
+    try {
+        const cuenta = await Cuenta.findOne({
+            attributes: ['id', 'nombre', 'pm', 'canal_principal', 'bienvenida'],
+            where: {
+                id: req.params.id
+            }
+        });
+        const canales_secundarios = await CanalSecundario.findAll({
+            attributes: ['canal'],
+            where: {
+                cuenta_id: cuenta.id
+            }
+        });
+        console.log(canales_secundarios);
+
+        const referentes = await Referente.findAll({
+            attributes: ['referente'],
+            where: {
+                cuenta_id: cuenta.id
+            }
+        });
+        console.log(referentes);
+
+        let response = {
+            cuenta: cuenta,
+            canales_secundarios: canales_secundarios.map(function(cs){
+                return cs.canal;
+            }),
+            referentes: referentes.map(function(ref){
+                return ref.referente;
+            }),
+        };
+
+        res.status(200).json(response);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
 app.post('/cuentas', async (req, res) => { 
     console.log(req.body);
     const cuenta = await Cuenta.create({ 
