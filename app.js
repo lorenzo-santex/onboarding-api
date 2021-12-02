@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+
+// Cuentas
 app.get('/cuentas', async (req, res) => {
     try {
         const cuentas = await Cuenta.findAll();
@@ -47,6 +49,36 @@ app.post('/cuentas', async (req, res) => {
     const referentes = await Referente.bulkCreate(referentesACrear); 
 
     res.status(200).send({status: "OK"});
+});
+
+// Referentes
+app.get('/referentes', async (req, res) => {
+    try {
+        const referentes = await Referente.findAll();
+        res.status(200).json(referentes);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+// Links
+app.get('/links', async (req, res) => {
+    try {
+        const links = await Link.findAll();
+        res.status(200).json(links);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+// Canal Secundario
+app.get('/canales-secundarios', async (req, res) => {
+    try {
+        const canalesSecundario = await CanalSecundario.findAll();
+        res.status(200).json(canalesSecundario);
+    } catch (e) {
+        res.status(500).send(e);
+    }
 });
 
 app.listen(port, () => {
