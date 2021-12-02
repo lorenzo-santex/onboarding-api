@@ -21,5 +21,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'CanalSecundario',
     tableName: 'canales_secundarios'
   });
-  return Canal;
+  return CanalSecundario;
 };

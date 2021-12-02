@@ -4,7 +4,10 @@
   "description": "API Onboarding para bot de Slack",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "^16.12.0"
   },
   "author": "Santex",
   "license": "ISC",
