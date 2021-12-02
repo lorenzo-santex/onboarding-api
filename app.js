@@ -7,12 +7,21 @@ const CanalSecundario = require('./models').CanalSecundario;
 const Referente = require('./models').Referente;
 const Link = require('./models').Link;
 const app       = express();
-const port      = process.env.PORT;
+const port      = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.get('/cuentas', async (req, res) => {
+    try {
+        const cuentas = await Cuenta.findAll();
+        res.status(200).json(cuentas);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
 
 app.post('/cuentas', async (req, res) => { 
     console.log(req.body);
